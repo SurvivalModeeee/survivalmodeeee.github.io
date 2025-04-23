@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background-color: #111;
+      border: 2px solid #5d7e3b;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 0 20px #5d7e3b55;
+      width: 350px;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 30px;
+      color: #5d7e3b;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background-color: #222;
+      border: 2px solid #5d7e3b;
+      color: white;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 16px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #222;
+      border: 2px solid #5d7e3b;
+      color: white;
+      font-size: 18px;
+      border-radius: 10px;
+      font-family: monospace;
+      transition: 0.3s;
+    }
+
+    .login-box button:hover {
+      background-color: #5d7e3b;
+      color: black;
+    }
+
+    .back-link {
+      margin-top: 20px;
+      display: block;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      color: #5d7e3b;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="login-box">
+  <h2>Login</h2>
+  <form onsubmit="return checkLogin(event)">
+    <input type="text" id="username" placeholder="Benutzername" required>
+    <input type="password" id="password" placeholder="Passwort" required>
+    <button type="submit">Einloggen</button>
+    <div class="error" id="error-msg"></div>
+  </form>
+  <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+</div>
+
+<script>
+  // Beispiel-Daten: Benutzer, Passwörter und Seiten
+  const users = [
+    { username: "leon", password: "100411", role: "user", page: "cloud.html" },
+  ];
+
+  function checkLogin(event) {
+    event.preventDefault(); // Verhindert Neuladen der Seite
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorMsg = document.getElementById('error-msg');
+
+    // Prüfen, ob Benutzername und Passwort korrekt sind
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+      // Login erfolgreich, Daten im localStorage speichern
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      window.location.href = user.page; // Weiterleitung je nach Rolle
+    } else {
+      errorMsg.textContent = "Benutzername oder Passwort ist falsch!";
+    }
+
+    return false;
+  }
+</script>
+</body>
+</html>
