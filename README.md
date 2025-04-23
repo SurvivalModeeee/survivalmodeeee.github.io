@@ -1,1 +1,0 @@
-# survivalmodeeee.github.io
