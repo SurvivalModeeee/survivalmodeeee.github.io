@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>reCAPTCHA – MultiAI</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        :root {
+            --bg: #0e0e0e;
+            --box-bg: rgba(255, 255, 255, 0.05);
+            --text: white;
+            --box-blur: blur(10px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .form-box {
+            background-color: var(--box-bg);
+            backdrop-filter: var(--box-blur);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.4s ease;
+        }
+
+        .form-box h2 {
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .g-recaptcha {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: var(--text);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<header><a href="index.html" style="color: white; text-decoration: none;">←</a></header>
+
+<div class="form-box">
+    <h2>Are you a human?</h2>
+
+    <!-- Google reCAPTCHA -->
+    <div class="g-recaptcha" data-sitekey="6LcH4CErAAAAAMNRkx-DCDBj0FDAXx0RjywiHCUI" data-callback="onRecaptchaSuccess"></div>
+
+</div>
+
+<footer>
+    © 2025 MultiAI – All rights reserved.
+</footer>
+
+<script>
+    // Callback function to be called when reCAPTCHA is successfully completed
+    function onRecaptchaSuccess() {
+        // Redirect to chat.html automatically after successful reCAPTCHA
+        window.location.href = "chat.html";
+    }
+</script>
+
+</body>
+</html>
